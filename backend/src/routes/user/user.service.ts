@@ -1,4 +1,10 @@
-import { ConflictException, Injectable, InternalServerErrorException, NotFoundException } from "@nestjs/common";
+import {
+	ConflictException,
+	Injectable,
+	InternalServerErrorException,
+	NotFoundException,
+	UnauthorizedException,
+} from "@nestjs/common";
 
 import { PrismaService } from "@root/prisma/prisma.service";
 import { StringHelper } from "@helpers/string/string.helper";
@@ -39,6 +45,13 @@ export class UserService {
 
 	public async validate(dto: ValidateUserDto) {
 		dto.username = this.stringHelper.normalizer(dto.username);
+
+		const user = await this.get({ username: dto.username });
+
+		const comparedPassword = this.stringHelper.compare(dto.password, user.password);
+		if (!comparedPassword) throw new UnauthorizedException();
+
+		return user;
 	}
 
 	public async get(dto: GetUserDto) {
@@ -51,6 +64,8 @@ export class UserService {
 				},
 			})
 			.then((user) => {
+				delete user.password;
+
 				return user;
 			})
 			.catch(() => {
