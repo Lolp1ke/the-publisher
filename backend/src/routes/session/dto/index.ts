@@ -6,3 +6,7 @@ export class SessionDataDto {
 export class CreateSessionDto extends SessionDataDto {
 	readonly userId: string;
 }
+
+export class UpdateSessionDto {
+	readonly sessionId: string;
+}

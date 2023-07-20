@@ -2,11 +2,11 @@ import { Injectable, InternalServerErrorException } from "@nestjs/common";
 
 import { PrismaService } from "@root/prisma/prisma.service";
 
-import { CreateSessionDto } from "@routes/session/dto";
+import { CreateSessionDto, UpdateSessionDto } from "@routes/session/dto";
 
 @Injectable()
 export class SessionService {
-	private readonly maxTime: number = 1000 * 60 * 60 * 24 * 7;
+	private readonly expirationDate: Date = new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 7);
 	constructor(private readonly prismaService: PrismaService) {}
 
 	public async create(dto: CreateSessionDto) {
@@ -22,11 +22,26 @@ export class SessionService {
 					},
 					ip: dto.ip,
 					device: dto.device,
-					expirationDate: new Date(new Date().getTime() + this.maxTime),
+					expirationDate: this.expirationDate,
 				},
 			})
 			.then((session) => {
 				return session;
+			})
+			.catch(() => {
+				throw new InternalServerErrorException();
+			});
+	}
+
+	public async update(dto: UpdateSessionDto) {
+		await this.prismaService.session
+			.update({
+				where: {
+					id: dto.sessionId,
+				},
+				data: {
+					expirationDate: this.expirationDate,
+				},
 			})
 			.catch(() => {
 				throw new InternalServerErrorException();
