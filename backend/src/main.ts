@@ -1,3 +1,4 @@
+import "dotenv/config";
 import { NestFactory } from "@nestjs/core";
 import { NestExpressApplication } from "@nestjs/platform-express";
 
@@ -11,7 +12,6 @@ async function bootstrap() {
 	app.enableCors({
 		origin: true,
 	});
-
 	await app.listen(MainConfig.PORT);
 }
 
