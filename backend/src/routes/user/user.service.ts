@@ -19,16 +19,21 @@ export class UserService {
 		dto.username = this.stringHelper.normalizer(dto.username);
 		dto.email = this.stringHelper.normalizer(dto.email);
 
-		await this.prismaService.user
+		this.prismaService.user.findMany().then((users) => {
+			console.log(users);
+		});
+
+		const exist = await this.prismaService.user
 			.findUnique({
 				where: {
 					username: dto.username,
 					email: dto.email,
 				},
 			})
-			.then(() => {
-				throw new ConflictException();
+			.then((user) => {
+				return user;
 			});
+		if (exist) throw new ConflictException();
 
 		dto.password = this.stringHelper.hash(dto.password);
 		return await this.prismaService.user
@@ -64,8 +69,6 @@ export class UserService {
 				},
 			})
 			.then((user) => {
-				delete user.password;
-
 				return user;
 			})
 			.catch(() => {

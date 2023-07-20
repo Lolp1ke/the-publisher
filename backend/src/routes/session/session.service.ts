@@ -28,8 +28,8 @@ export class SessionService {
 			.then((session) => {
 				return session;
 			})
-			.catch(() => {
-				throw new InternalServerErrorException();
+			.catch((error) => {
+				throw new InternalServerErrorException(error);
 			});
 	}
 
@@ -43,8 +43,8 @@ export class SessionService {
 					expirationDate: this.expirationDate,
 				},
 			})
-			.catch(() => {
-				throw new InternalServerErrorException();
+			.catch((error) => {
+				throw new InternalServerErrorException(error);
 			});
 	}
 }
