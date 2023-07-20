@@ -1,6 +1,7 @@
 node_modules
 
 .editorconfig
+.env
 
 # compiled output
 backend/dist
