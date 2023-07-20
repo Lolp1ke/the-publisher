@@ -6,6 +6,7 @@ import { CreateSessionDto } from "@routes/session/dto";
 
 @Injectable()
 export class SessionService {
+	private readonly maxTime: number = 1000 * 60 * 60 * 24 * 7;
 	constructor(private readonly prismaService: PrismaService) {}
 
 	public async create(dto: CreateSessionDto) {
@@ -21,6 +22,7 @@ export class SessionService {
 					},
 					ip: dto.ip,
 					device: dto.device,
+					expirationDate: new Date(new Date().getTime() + this.maxTime),
 				},
 			})
 			.then((session) => {
