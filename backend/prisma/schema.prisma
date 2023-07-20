@@ -19,12 +19,12 @@ model User {
 	email       String  @unique
 	emailStatus Boolean @default(false)
 
-	firstName String
-	lastName  String
+	firstName String?
+	lastName  String?
 
-	country String
-	city    String
-	school  String
+	country String?
+	city    String?
+	school  String?
 
 	bio               String?
 	profilePictureURL String?
