@@ -1,0 +1,153 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+	provider = "prisma-client-js"
+}
+
+datasource db {
+	provider = "postgresql"
+	url      = env("DATABASE_URL")
+}
+
+model User {
+	id String @id @default(uuid())
+
+	username String @unique
+	password String
+
+	email       String  @unique
+	emailStatus Boolean @default(false)
+
+	firstName String
+	lastName  String
+
+	country String
+	city    String
+	school  String
+
+	bio               String?
+	profilePictureURL String?
+
+	author Author?
+	editor Editor?
+	admin  Admin?
+
+	comments Comment[]
+	sessions Session[]
+
+	createdAt DateTime @default(now())
+	alteredAt DateTime @default(now()) @updatedAt
+
+	@@map("Users")
+}
+
+model Session {
+	id String @id @default(uuid())
+
+	user   User   @relation(fields: [userId], references: [id])
+	userId String
+
+	ip     String
+	device String
+
+	createdAt DateTime @default(now())
+	alteredAt DateTime @default(now()) @updatedAt
+
+	@@map("Sessions")
+}
+
+model Admin {
+	id String @id @default(uuid())
+
+	user   User   @relation(fields: [userId], references: [id])
+	userId String @unique
+
+	createdAt DateTime @default(now())
+	alteredAt DateTime @default(now()) @updatedAt
+
+	@@map("Admins")
+}
+
+model Author {
+	id String @id @default(uuid())
+
+	user   User   @relation(fields: [userId], references: [id])
+	userId String @unique
+
+	post Post[]
+
+	createdAt DateTime @default(now())
+	alteredAt DateTime @default(now()) @updatedAt
+
+	@@map("Authors")
+}
+
+model Editor {
+	id String @id @default(uuid())
+
+	user   User   @relation(fields: [userId], references: [id])
+	userId String @unique
+
+	role EEditorRole @default(ordinary)
+
+	createdAt DateTime @default(now())
+	alteredAt DateTime @default(now()) @updatedAt
+
+	@@map("Editors")
+}
+
+enum EEditorRole {
+	ordinary
+	main
+}
+
+model Post {
+	id String @id @default(uuid())
+
+	author   Author @relation(fields: [authorId], references: [id])
+	authorId String
+
+	title String
+	text  String
+	genra String[]
+
+	links     String[]
+	photoURLs String[]
+	videoURLs String[]
+	audioURLs String[]
+
+	views Int @default(0)
+
+	status EPostStatus @default(draft)
+
+	comments Comment[]
+
+	createdAt DateTime @default(now())
+	alteredAt DateTime @default(now()) @updatedAt
+
+	@@map("Posts")
+}
+
+enum EPostStatus {
+	draft
+	check
+	production
+}
+
+model Comment {
+	id String @id @default(uuid())
+
+	user   User   @relation(fields: [userId], references: [id])
+	userId String
+
+	text String
+
+	post   Post   @relation(fields: [postId], references: [id])
+	postId String
+
+	createdAt DateTime @default(now())
+	alteredAt DateTime @default(now()) @updatedAt
+
+	@@map("Comments")
+}
