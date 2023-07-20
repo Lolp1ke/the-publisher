@@ -4,12 +4,12 @@ export class CreateUserDto {
 
 	email: string;
 
-	readonly firstName: string;
-	readonly lastName: string;
+	readonly firstName?: string;
+	readonly lastName?: string;
 
-	readonly country: string;
-	readonly city: string;
-	readonly school: string;
+	readonly country?: string;
+	readonly city?: string;
+	readonly school?: string;
 }
 
 export class ValidateUserDto {
