@@ -3,7 +3,7 @@ import { Request } from "express";
 
 import { AuthService } from "@routes/auth/auth.service";
 
-import { CreateUserDto } from "@routes/user/dto";
+import { CreateUserDto, ValidateUserDto } from "@routes/user/dto";
 
 @Controller("/auth")
 export class AuthController {
@@ -13,6 +13,15 @@ export class AuthController {
 	@Post("/local/sign-up")
 	public async localSignUp(@Body() dto: CreateUserDto, @Headers("user-agent") device, @Req() req: Request) {
 		return await this.authService.localSignUp(dto, {
+			ip: req.ip,
+			device: device,
+		});
+	}
+
+	@HttpCode(HttpStatus.OK)
+	@Post("/local/sign-in")
+	public async localSignIn(@Body() dto: ValidateUserDto, @Headers("user-agent") device, @Req() req: Request) {
+		return await this.authService.localSignIn(dto, {
 			ip: req.ip,
 			device: device,
 		});
