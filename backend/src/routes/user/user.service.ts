@@ -24,6 +24,7 @@ export class UserService {
 				throw new ConflictException();
 			});
 
+		dto.password = this.stringHelper.hash(dto.password);
 		return await this.prismaService.user
 			.create({
 				data: dto,
