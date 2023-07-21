@@ -100,6 +100,8 @@ export class UserService {
 	}
 
 	public async getMe(dto: GetSessionDto) {
+		if (!dto.sessionId) throw new UnauthorizedException("Provide session id");
+
 		const session = await this.sessionService.get(dto);
 		if (session.expirationDate.getTime() - new Date().getTime() < 0)
 			throw new UnauthorizedException("Session has been expired");
