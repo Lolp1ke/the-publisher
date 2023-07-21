@@ -1,4 +1,4 @@
-import { Injectable, InternalServerErrorException } from "@nestjs/common";
+import { ConflictException, Injectable, InternalServerErrorException } from "@nestjs/common";
 
 import { PrismaService } from "@modules/prisma/prisma.service";
 
@@ -9,6 +9,13 @@ export class AuthorService {
 	constructor(private readonly prismaService: PrismaService) {}
 
 	public async create(dto: CreateAuthorDto) {
+		const exist = await this.prismaService.author.findUnique({
+			where: {
+				userId: dto.userId,
+			},
+		});
+		if (exist) throw new ConflictException("You already an author");
+
 		return await this.prismaService.author
 			.create({
 				data: {
