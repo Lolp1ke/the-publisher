@@ -2,7 +2,7 @@ import { Injectable, InternalServerErrorException } from "@nestjs/common";
 
 import { PrismaService } from "@root/prisma/prisma.service";
 
-import { CreateSessionDto, UpdateSessionDto } from "@routes/session/dto";
+import { CreateSessionDto, GetSessionDto, UpdateSessionDto } from "@routes/session/dto";
 
 @Injectable()
 export class SessionService {
@@ -45,6 +45,18 @@ export class SessionService {
 			})
 			.catch((error) => {
 				throw new InternalServerErrorException(error);
+			});
+	}
+
+	public async get(dto: GetSessionDto) {
+		return await this.prismaService.session
+			.findUnique({
+				where: {
+					id: dto.sessionId,
+				},
+			})
+			.then((session) => {
+				return session;
 			});
 	}
 }

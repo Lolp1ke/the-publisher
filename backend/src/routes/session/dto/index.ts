@@ -10,3 +10,7 @@ export class CreateSessionDto extends SessionDataDto {
 export class UpdateSessionDto {
 	readonly sessionId: string;
 }
+
+export class GetSessionDto {
+	readonly sessionId: string;
+}
