@@ -10,10 +10,19 @@ import { PrismaService } from "@root/prisma/prisma.service";
 import { StringHelper } from "@helpers/string/string.helper";
 
 import { CreateUserDto, GetUserDto, ValidateUserDto } from "@routes/user/dto";
+import { SessionService } from "@routes/session/session.service";
+import { GetSessionDto } from "@routes/session/dto";
+import { FilterDto } from "@root/types";
+import { ObjectHelper } from "@helpers/object/object.helper";
 
 @Injectable()
 export class UserService {
-	constructor(private readonly prismaService: PrismaService, private readonly stringHelper: StringHelper) {}
+	constructor(
+		private readonly prismaService: PrismaService,
+		private readonly sessionService: SessionService,
+		private readonly stringHelper: StringHelper,
+		private readonly objectHelper: ObjectHelper
+	) {}
 
 	public async create(dto: CreateUserDto) {
 		dto.username = this.stringHelper.normalizer(dto.username);
@@ -73,6 +82,38 @@ export class UserService {
 			})
 			.catch(() => {
 				throw new NotFoundException();
+			});
+	}
+
+	public async getAll(dto: FilterDto) {
+		dto = this.objectHelper.removeNulls(dto);
+		dto = this.objectHelper.parseNumbers(dto);
+
+		return await this.prismaService.user
+			.findMany(dto)
+			.then((users) => {
+				return users;
+			})
+			.catch((error) => {
+				throw new InternalServerErrorException(error);
+			});
+	}
+
+	public async getMe(dto: GetSessionDto) {
+		const session = await this.sessionService.get(dto);
+
+		return await this.prismaService.user
+			.findUnique({
+				where: {
+					id: session.userId,
+				},
+			})
+			.then((user) => {
+				delete user.password;
+				return user;
+			})
+			.catch((error) => {
+				throw new InternalServerErrorException(error);
 			});
 	}
 }
