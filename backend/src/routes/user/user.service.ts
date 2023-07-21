@@ -101,6 +101,8 @@ export class UserService {
 
 	public async getMe(dto: GetSessionDto) {
 		const session = await this.sessionService.get(dto);
+		if (session.expirationDate.getTime() - new Date().getTime() < 0)
+			throw new UnauthorizedException("Session has been expired");
 
 		return await this.prismaService.user
 			.findUnique({
