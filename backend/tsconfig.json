@@ -14,7 +14,7 @@
 			"@root/*": ["./*"],
 			"@helpers/*": ["./helpers/*"],
 			"@config/*": ["./config/*"],
-			"@routes/*": ["./routes/*"]
+			"@modules/*": ["./modules/*"]
 		},
 		"incremental": true,
 		"skipLibCheck": true,

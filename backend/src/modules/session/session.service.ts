@@ -1,8 +1,8 @@
 import { Injectable, InternalServerErrorException } from "@nestjs/common";
 
-import { PrismaService } from "@root/prisma/prisma.service";
+import { PrismaService } from "@modules/prisma/prisma.service";
 
-import { CreateSessionDto, GetSessionDto, UpdateSessionDto } from "@routes/session/dto";
+import { CreateSessionDto, GetSessionDto, UpdateSessionDto } from "@modules/session/dto";
 
 @Injectable()
 export class SessionService {

@@ -1,4 +1,5 @@
 import {
+	BadRequestException,
 	ConflictException,
 	Injectable,
 	InternalServerErrorException,
@@ -6,14 +7,15 @@ import {
 	UnauthorizedException,
 } from "@nestjs/common";
 
-import { PrismaService } from "@root/prisma/prisma.service";
-import { StringHelper } from "@helpers/string/string.helper";
+import { PrismaService } from "@modules/prisma/prisma.service";
+import { SessionService } from "@modules/session/session.service";
 
-import { CreateUserDto, GetUserDto, ValidateUserDto } from "@routes/user/dto";
-import { SessionService } from "@routes/session/session.service";
-import { GetSessionDto } from "@routes/session/dto";
-import { FilterDto } from "@root/types";
+import { StringHelper } from "@helpers/string/string.helper";
 import { ObjectHelper } from "@helpers/object/object.helper";
+
+import { CreateUserDto, GetUserDto, ValidateUserDto } from "@modules/user/dto";
+import { GetSessionDto } from "@modules/session/dto";
+import { FilterDto } from "@root/types";
 
 @Injectable()
 export class UserService {
@@ -69,6 +71,7 @@ export class UserService {
 	}
 
 	public async get(dto: GetUserDto) {
+		if (!dto.username) throw new BadRequestException("Provide with username");
 		dto.username = this.stringHelper.normalizer(dto.username);
 
 		return await this.prismaService.user
@@ -100,7 +103,7 @@ export class UserService {
 	}
 
 	public async getMe(dto: GetSessionDto) {
-		if (!dto.sessionId) throw new UnauthorizedException("Provide session id");
+		if (!dto.sessionId) throw new UnauthorizedException("Provide with session id");
 
 		const session = await this.sessionService.get(dto);
 		if (session.expirationDate.getTime() - new Date().getTime() < 0)

@@ -1,9 +1,9 @@
 import { Controller, Get, HttpCode, HttpStatus, Query } from "@nestjs/common";
 
-import { UserService } from "@routes/user/user.service";
+import { UserService } from "@modules/user/user.service";
 
-import { GetUserDto } from "@routes/user/dto";
-import { GetSessionDto } from "@routes/session/dto";
+import { GetUserDto } from "@modules/user/dto";
+import { GetSessionDto } from "@modules/session/dto";
 import { FilterDto } from "@root/types";
 
 @Controller("/user")

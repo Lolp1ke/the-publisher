@@ -1,10 +1,10 @@
 import { Injectable } from "@nestjs/common";
 
-import { UserService } from "@routes/user/user.service";
-import { SessionService } from "@routes/session/session.service";
+import { UserService } from "@modules/user/user.service";
+import { SessionService } from "@modules/session/session.service";
 
-import { CreateUserDto, ValidateUserDto } from "@routes/user/dto";
-import { SessionDataDto } from "@routes/session/dto";
+import { CreateUserDto, ValidateUserDto } from "@modules/user/dto";
+import { SessionDataDto } from "@modules/session/dto";
 
 @Injectable()
 export class AuthService {
