@@ -12,6 +12,7 @@
 		"baseUrl": "./src",
 		"paths": {
 			"@root/*": ["./*"],
+			"@api/*": ["./api/*"],
 			"@helpers/*": ["./helpers/*"],
 			"@config/*": ["./config/*"],
 			"@modules/*": ["./modules/*"]
