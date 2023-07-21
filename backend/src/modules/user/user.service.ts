@@ -30,21 +30,14 @@ export class UserService {
 		dto.username = this.stringHelper.normalizer(dto.username);
 		dto.email = this.stringHelper.normalizer(dto.email);
 
-		this.prismaService.user.findMany().then((users) => {
-			console.log(users);
+		const exist = await this.prismaService.user.findMany({
+			where: {
+				username: dto.username,
+				email: dto.email,
+			},
 		});
 
-		const exist = await this.prismaService.user
-			.findUnique({
-				where: {
-					username: dto.username,
-					email: dto.email,
-				},
-			})
-			.then((user) => {
-				return user;
-			});
-		if (exist) throw new ConflictException();
+		if (exist.length > 0) throw new ConflictException("Username/Email already taken");
 
 		dto.password = this.stringHelper.hash(dto.password);
 		return await this.prismaService.user
@@ -54,8 +47,8 @@ export class UserService {
 			.then((user) => {
 				return user;
 			})
-			.catch(() => {
-				throw new InternalServerErrorException();
+			.catch((error) => {
+				throw new InternalServerErrorException(error);
 			});
 	}
 
