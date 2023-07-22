@@ -1,4 +1,5 @@
 node_modules
+backend/key.json
 
 .editorconfig
 .env
@@ -37,4 +38,3 @@ lerna-debug.log*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
-!.vscode/extensions.json
