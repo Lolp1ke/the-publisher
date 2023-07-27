@@ -1,8 +1,9 @@
-import { Controller, Get, HttpCode, HttpStatus, Query } from "@nestjs/common";
+import { Body, Controller, Get, HttpCode, HttpStatus, Put, Query, UploadedFile, UseInterceptors } from "@nestjs/common";
+import { FileInterceptor } from "@nestjs/platform-express";
 
 import { UserService } from "@modules/user/user.service";
 
-import { GetUserDto } from "@modules/user/dto";
+import { GetUserDto, SetProfilePictureDto } from "@modules/user/dto";
 import { GetSessionDto } from "@modules/session/dto";
 import { FilterDto } from "@root/types";
 
@@ -26,5 +27,12 @@ export class UserController {
 	@Get("/get-me")
 	public async getMe(@Query() dto: GetSessionDto) {
 		return await this.userService.getMe(dto);
+	}
+
+	@HttpCode(HttpStatus.OK)
+	@Put("/set-profile-picture")
+	@UseInterceptors(FileInterceptor("file"))
+	public async setProfilePicture(@Body() dto: SetProfilePictureDto, @UploadedFile() file: Express.Multer.File) {
+		return await this.userService.setProfileImage(dto, file);
 	}
 }

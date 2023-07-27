@@ -20,3 +20,7 @@ export class ValidateUserDto {
 export class GetUserDto {
 	username: string;
 }
+
+export class SetProfilePictureDto {
+	readonly userId: string;
+}

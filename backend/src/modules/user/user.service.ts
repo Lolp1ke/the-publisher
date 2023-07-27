@@ -9,11 +9,12 @@ import {
 
 import { PrismaService } from "@modules/prisma/prisma.service";
 import { SessionService } from "@modules/session/session.service";
+import { StorageService } from "@api/google/storage/storage.service";
 
 import { StringHelper } from "@helpers/string/string.helper";
 import { ObjectHelper } from "@helpers/object/object.helper";
 
-import { CreateUserDto, GetUserDto, ValidateUserDto } from "@modules/user/dto";
+import { CreateUserDto, GetUserDto, SetProfilePictureDto, ValidateUserDto } from "@modules/user/dto";
 import { GetSessionDto } from "@modules/session/dto";
 import { FilterDto } from "@root/types";
 
@@ -22,6 +23,7 @@ export class UserService {
 	constructor(
 		private readonly prismaService: PrismaService,
 		private readonly sessionService: SessionService,
+		private readonly storageService: StorageService,
 		private readonly stringHelper: StringHelper,
 		private readonly objectHelper: ObjectHelper
 	) {}
@@ -111,6 +113,25 @@ export class UserService {
 			.then((user) => {
 				delete user.password;
 				return user;
+			})
+			.catch((error) => {
+				throw new InternalServerErrorException(error);
+			});
+	}
+
+	public async setProfileImage(dto: SetProfilePictureDto, file: Express.Multer.File) {
+		const mediaURL = await this.storageService.upload(file, `pics/${dto.userId}`).catch((error) => {
+			throw new InternalServerErrorException(error);
+		});
+
+		await this.prismaService.user
+			.update({
+				where: {
+					id: dto.userId,
+				},
+				data: {
+					profilePictureURL: mediaURL,
+				},
 			})
 			.catch((error) => {
 				throw new InternalServerErrorException(error);

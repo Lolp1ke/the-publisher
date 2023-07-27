@@ -20,8 +20,8 @@ export class PostController {
 		return await this.postService.update(dto);
 	}
 
-	@UseInterceptors(FilesInterceptor("files", 1))
 	@Put("/add-image")
+	@UseInterceptors(FilesInterceptor("files", 3))
 	public async addImage(@Body() dto: AddMediaDto, @UploadedFiles() files: Express.Multer.File[]) {
 		return await this.postService.addImage(dto, files);
 	}

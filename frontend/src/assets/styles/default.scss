@@ -1,0 +1,68 @@
+@import "@assets/styles/mixins";
+
+@import url("https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Simonetta:ital,wght@0,400;0,900;1,400;1,900&display=swap");
+
+:root {
+	--main-color: #41644a;
+	--secondary-color: #e86a33;
+
+	--bg-color: ;
+
+	--main-font: "PT Serif", serif;
+
+	--animation-fast: 0.3s;
+	--animation-normal: 0.5s;
+	--animation-slow: 0.7s;
+}
+::-webkit-scrollbar {
+	width: 0;
+	scrollbar-width: none;
+}
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+html {
+	scroll-behavior: smooth;
+}
+body {
+	width: 100vw;
+	min-height: 100vh;
+	padding: 20px 0;
+	@include flex(column, normal, normal, 0);
+}
+[class*="__container"] {
+	width: 95%;
+	margin: 0 auto !important;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+label,
+li {
+	cursor: default;
+	font-family: var(--main-font);
+}
+a {
+	text-decoration: none;
+	color: inherit;
+}
+button {
+	font-family: var(--main-font);
+	@include reset();
+	cursor: pointer;
+}
+input {
+	font-family: var(--main-font);
+	@include reset();
+}
+ul,
+ol {
+	list-style: none;
+}

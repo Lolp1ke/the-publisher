@@ -1,0 +1,76 @@
+@import "@assets/styles/mixins";
+
+.header {
+	position: relative;
+	// .header__container
+	&__container {
+		@include flex(column, normal, center, 10px);
+	}
+
+	// .header__main
+	&__main {
+		@include flex(row, space-between, center, 0);
+		width: 100%;
+		flex: auto 1;
+		padding: 30px 15px;
+	}
+
+	// .header__info
+	&__info {
+		@include flex(column, normal, flex-start, 15px);
+	}
+
+	// .header__date
+	&__date {
+		max-width: 120px;
+	}
+
+	// .header__social
+	&__social {
+		@include flex(row, space-evenly, center, 5px);
+		width: 100%;
+	}
+	&__center {
+		@include flex(column, normal, center, 10px);
+	}
+
+	// .header__link
+	&__link {
+		position: relative;
+		width: 24px;
+		height: 24px;
+		@include flex(row, center, center, 0);
+	}
+	&__title {
+		@include flex(row, normal, flex-end, 5px);
+		color: var(--secondary-color);
+		font-family: "Simonetta", serif;
+		text-transform: uppercase;
+		white-space: pre-wrap;
+
+		&-sub {
+			font-size: clamp(1rem, 0.472rem + 2.25vw, 2.5rem); // 16 <- 40
+			margin-bottom: 9px;
+			font-weight: 600;
+		}
+		&-main {
+			font-size: clamp(1.5rem, 0.62rem + 3.76vw, 4rem); // 24 <- 64
+			border-bottom: 3px var(--secondary-color) solid;
+			font-weight: 900;
+		}
+	}
+
+	// .header__profile
+	&__profile {
+	}
+	&__profile-icon {
+		& img {
+			width: 24px;
+			height: 24px;
+		}
+	}
+
+	// .header__sub-title
+	&__sub-title {
+	}
+}

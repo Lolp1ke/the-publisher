@@ -6,6 +6,7 @@ backend/key.json
 
 # compiled output
 backend/dist
+.next/
 
 # Logs
 logs
