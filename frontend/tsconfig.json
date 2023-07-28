@@ -22,6 +22,7 @@
 			"@assets/*": ["./assets/*"],
 			"@config/*": ["./config/*"],
 
+			"@lib/*": ["./lib/*"],
 			"@context/*": ["./context/*"],
 			"@hooks/*": ["./hooks/*"],
 
