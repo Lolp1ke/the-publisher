@@ -1,4 +1,6 @@
-import { ReactNode } from "react";
+import { Fragment, ReactNode } from "react";
+
+import { useUser } from "@hooks/user/useUser";
 
 import Header from "@components/Header/Header";
 
@@ -7,11 +9,15 @@ interface LayoutProps {
 	children: ReactNode;
 }
 
-export default function Layout({ className, children }: LayoutProps) {
+export default async function Layout({ className, children }: LayoutProps) {
+	const user = await useUser().then((props) => {
+		return props.user;
+	});
+
 	return (
-		<>
-			<Header />
-			<main className={className}>{children}</main>;
-		</>
+		<Fragment>
+			<Header user={user} />
+			<main className={className}>{children}</main>
+		</Fragment>
 	);
 }

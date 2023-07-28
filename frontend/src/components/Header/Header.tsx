@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 
 import "./styles/header.scss";
@@ -7,9 +8,14 @@ import "./styles/header.scss";
 import Navbar from "@components/Navbar/Navbar";
 
 import Burger from "@ui/Burger/Burger";
-import Image from "next/image";
 
-export default function Header() {
+import { TUser } from "@hooks/user/types";
+
+interface HeaderProps {
+	user: TUser | null;
+}
+
+export default function Header({ user }: HeaderProps) {
 	const [showBurger, setShowBurger] = useState<boolean>(false);
 
 	return (
@@ -36,7 +42,8 @@ export default function Header() {
 								<Image
 									src="/assets/icons/social/instagram.svg"
 									alt="instagram"
-									fill={true}
+									width={24}
+									height={24}
 									draggable={false}
 								/>
 							</a>
@@ -44,7 +51,8 @@ export default function Header() {
 								<Image
 									src="/assets/icons/social/facebook.svg"
 									alt="facebook"
-									fill={true}
+									width={24}
+									height={24}
 									draggable={false}
 								/>
 							</a>
@@ -52,7 +60,8 @@ export default function Header() {
 								<Image
 									src="/assets/icons/social/twitter.svg"
 									alt="twitter"
-									fill={true}
+									width={24}
+									height={24}
 									draggable={false}
 								/>
 							</a>
@@ -60,7 +69,8 @@ export default function Header() {
 								<Image
 									src="/assets/icons/social/linked-in.svg"
 									alt="linked-in"
-									fill={true}
+									width={24}
+									height={24}
 									draggable={false}
 								/>
 							</a>
@@ -73,11 +83,19 @@ export default function Header() {
 						</Link>
 						<p className="header__sub-title">Astana, Kazakhstan * Vol.I</p>
 					</div>
-					<div className="header__profile">
-						<Link href={"/auth"} className="header__profile-icon">
-							<img src="/assets/icons/user.svg" alt="user" draggable={false} />
-						</Link>
-					</div>
+					<Link href={user ? "/profile" : "/auth"} className="header__profile">
+						<p className="header__profile-name">
+							{user?.lastName} {user?.firstName}
+						</p>
+						<Image
+							src={user?.profilePictureURL ?? "/assets/icons/user.svg"}
+							alt="user"
+							className="header__profile-icon"
+							width={24}
+							height={24}
+							draggable={false}
+						/>
+					</Link>
 				</div>
 				<Navbar />
 			</div>
