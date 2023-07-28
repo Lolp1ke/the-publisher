@@ -30,7 +30,6 @@ html {
 body {
 	width: 100vw;
 	min-height: 100vh;
-	padding: 20px 0;
 	@include flex(column, normal, normal, 0);
 }
 [class*="__container"] {

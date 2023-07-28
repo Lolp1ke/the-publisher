@@ -62,6 +62,10 @@
 
 	// .header__profile
 	&__profile {
+		@include flex(row, normal, center, 10px);
+	}
+	&__profile-name {
+		cursor: pointer;
 	}
 	&__profile-icon {
 		& img {
