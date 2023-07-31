@@ -20,11 +20,12 @@
 		}
 		&-main {
 			font-family: "Simonetta", serif;
+			color: #e86a33;
 			font-size: clamp(1.5rem, 0.62rem + 3.76vw, 4rem); // 24 <- 64
 			border-bottom: 3px var(--secondary-color) solid;
 			line-height: 0.8;
 			font-weight: 900;
-			letter-spacing: -2.5px;
+			letter-spacing: -5.5px;
 		}
 	}
 
