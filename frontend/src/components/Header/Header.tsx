@@ -1,7 +1,5 @@
-"use client";
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
 
 import "./styles/header.scss";
 
@@ -16,14 +14,12 @@ interface HeaderProps {
 }
 
 export default function Header({ user }: HeaderProps) {
-	const [showBurger, setShowBurger] = useState<boolean>(false);
-
 	return (
 		<header className="header">
 			<div className="header__container">
 				<div className="header__main">
 					<div className="header__info">
-						<Burger isVisible={showBurger} setIsVisible={setShowBurger} />
+						<Burger />
 						<p className="header__date">
 							<time>
 								{new Date().toLocaleString("en-EN", {
@@ -83,7 +79,7 @@ export default function Header({ user }: HeaderProps) {
 						</Link>
 						<p className="header__sub-title">Astana, Kazakhstan * Vol.I</p>
 					</div>
-					<Link href={user ? "/profile" : "/auth"} className="header__profile">
+					<Link href={user ? "/profile" : "/auth/sign-in"} className="header__profile">
 						<p className="header__profile-name">
 							{user?.lastName} {user?.firstName}
 						</p>
@@ -91,8 +87,8 @@ export default function Header({ user }: HeaderProps) {
 							src={user?.profilePictureURL ?? "/assets/icons/user.svg"}
 							alt="user"
 							className="header__profile-icon"
-							width={24}
-							height={24}
+							width={42}
+							height={42}
 							draggable={false}
 						/>
 					</Link>
