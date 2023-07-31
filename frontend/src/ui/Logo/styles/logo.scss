@@ -14,7 +14,8 @@
 		&-sub {
 			font-family: "Simonetta", serif;
 			font-size: clamp(1rem, 0.472rem + 2.25vw, 2.5rem); // 16 <- 40
-			margin-bottom: 9px;
+			//line-height: 0.8;
+			//margin-bottom: 9px;
 			font-weight: 600;
 			letter-spacing: -2.5px;
 		}
