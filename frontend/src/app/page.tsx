@@ -1,5 +1,5 @@
-import Home from "@root/routes/Home/Home";
+import { redirect } from "next/navigation";
 
 export default function page() {
-	return <Home />;
+	return redirect("/home");
 }

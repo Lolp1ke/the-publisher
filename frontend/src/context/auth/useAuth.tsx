@@ -1,3 +1,4 @@
+"use client";
 import { createContext, ReactNode, useContext } from "react";
 import { useCookies } from "react-cookie";
 import { AxiosResponse } from "axios";
@@ -5,11 +6,10 @@ import { AxiosResponse } from "axios";
 import { Axios } from "@lib/axios/axios";
 
 import { ILocalSignIn, ILocalSignUp } from "@context/auth/types";
+import { useRouter } from "next/navigation";
 
 interface AuthContextProps {
-	// eslint-disable-next-line no-unused-vars
 	localSignIn: (props: ILocalSignIn) => Promise<void>;
-	// eslint-disable-next-line no-unused-vars
 	localSignUp: (props: ILocalSignUp) => Promise<void>;
 }
 
@@ -20,13 +20,32 @@ export function useAuth(): AuthContextProps {
 }
 
 export function AuthProvider({ children }: { children: ReactNode }) {
+	const { push } = useRouter();
 	const [, setCookie] = useCookies(["sessionId"]);
 
-	async function localSignUp() {}
+	async function localSignUp(props: ILocalSignUp) {
+		await Axios({
+			method: "POST",
+			url: "/auth/local/sign-up",
+			data: props,
+		}).then((response: AxiosResponse<string>) => {
+			setCookie("sessionId", response.data, {
+				path: "/",
+			});
+			// push("/");
+		});
+	}
 
 	async function localSignIn(props: ILocalSignIn) {
-		await Axios.post("/auth/local/sign-in", props).then((response: AxiosResponse) => {
-			setCookie("sessionId", response.data);
+		await Axios({
+			method: "POST",
+			url: "/auth/local/sign-in",
+			data: props,
+		}).then((response: AxiosResponse<string>) => {
+			setCookie("sessionId", response.data, {
+				path: "/",
+			});
+			push("/profile");
 		});
 	}
 

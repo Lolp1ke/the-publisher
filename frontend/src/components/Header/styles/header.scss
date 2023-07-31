@@ -2,6 +2,7 @@
 
 .header {
 	position: relative;
+
 	// .header__container
 	&__container {
 		@include flex(column, normal, center, 10px);
@@ -36,11 +37,6 @@
 			display: none;
 		}
 	}
-
-	&__center {
-		@include flex(column, normal, center, 10px);
-	}
-
 	// .header__link
 	&__link {
 		position: relative;
@@ -48,25 +44,6 @@
 		height: 24px;
 		@include flex(row, center, center, 0);
 	}
-	&__title {
-		@include flex(row, normal, flex-end, 5px);
-		color: var(--secondary-color);
-		font-family: "Simonetta", serif;
-		text-transform: uppercase;
-		white-space: pre-wrap;
-
-		&-sub {
-			font-size: clamp(1rem, 0.472rem + 2.25vw, 2.5rem); // 16 <- 40
-			margin-bottom: 9px;
-			font-weight: 600;
-		}
-		&-main {
-			font-size: clamp(1.5rem, 0.62rem + 3.76vw, 4rem); // 24 <- 64
-			border-bottom: 3px var(--secondary-color) solid;
-			font-weight: 900;
-		}
-	}
-
 	// .header__profile
 	&__profile {
 		@include flex(row, normal, center, 10px);
@@ -79,9 +56,5 @@
 			width: 24px;
 			height: 24px;
 		}
-	}
-
-	// .header__sub-title
-	&__sub-title {
 	}
 }

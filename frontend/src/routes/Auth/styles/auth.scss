@@ -1,0 +1,133 @@
+@import "@assets/styles/mixins";
+
+.auth {
+	position: relative;
+	@include flex(row, center, center, 0);
+	width: 100vw;
+	height: 100vh;
+
+	&::after {
+		content: "";
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		opacity: 0.5;
+		background-image: url("/assets/images/auth/bg.jpg");
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
+
+	&::before {
+		content: "";
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		//background: linear-gradient(0, #000000 0%, #41644a 100%);
+		//background: linear-gradient(180deg, #000 0%, #5b4d4d 100%);
+		background: linear-gradient(180deg, #000 0%, #5b4d4d 100%);
+	}
+
+	// .auth__form
+	&__form {
+		@include flex(column, normal, normal, 30px);
+		min-width: clamp(22.5rem, 20.555rem + 8.41vw, 28.125rem); // 450 -> 360
+		padding: 35px;
+		border-radius: 6px;
+		border: 1px solid #41644a;
+		background-color: #fff;
+		z-index: 10;
+	}
+
+	// .auth__types
+	&__types {
+		@include flex(row, normal, center, 10px);
+		border-radius: 5px;
+		border: 1px solid #41644a;
+		padding: 3px;
+		margin: 40px 0 20px 0;
+	}
+
+	// .auth__type
+	&__type {
+		width: 100%;
+		padding: 15px 20px;
+		text-align: center;
+
+		color: #41644a;
+		font-size: 18px;
+		font-weight: 700;
+
+		&.active {
+			color: #263a29;
+			border-radius: 5px;
+			background-color: #b8d5b1;
+		}
+	}
+
+	// .auth__inputs
+	&__inputs {
+		@include flex(column, normal, normal, 10px);
+
+		& input {
+			font-size: 18px;
+		}
+	}
+
+	// .auth__forgot
+	&__forgot {
+		align-self: flex-end;
+		color: #41644a;
+		line-height: 136%; /* 16.32px */
+	}
+
+	// .auth__submit
+	&__submit {
+		color: #ffffff;
+		font-size: 16px;
+		font-weight: 700;
+		letter-spacing: -0.32px;
+		padding: 15px 20px;
+
+		border-radius: 2px;
+		background-color: #e86a33;
+	}
+
+	// .auth__other
+	&__other {
+		align-self: center;
+	}
+
+	// .auth__other-auth
+	&__other-auth {
+		align-self: center;
+		color: #263a29;
+		font-size: 16px;
+		font-weight: 700;
+		letter-spacing: -0.32px;
+	}
+
+	// .auth__methods
+	&__methods {
+		@include flex(row, space-evenly, center, 15px);
+	}
+
+	// .auth__other-method
+	&__method {
+		@include flex(row, center, center, 0);
+		border-radius: 50%;
+		padding: 2px;
+		border: 2px solid #41644a;
+	}
+}
+
+.logo {
+	&__title {
+		&-sub {
+			font-size: 24px !important;
+		}
+		&-main {
+			font-size: 48px !important;
+		}
+	}
+}

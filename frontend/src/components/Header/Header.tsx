@@ -8,6 +8,7 @@ import Navbar from "@components/Navbar/Navbar";
 import Burger from "@ui/Burger/Burger";
 
 import { TUser } from "@hooks/user/types";
+import Logo from "@ui/Logo/Logo";
 
 interface HeaderProps {
 	user: TUser | null;
@@ -72,17 +73,9 @@ export default function Header({ user }: HeaderProps) {
 							</a>
 						</div>
 					</div>
-					<div className="header__center">
-						<Link href={"/"} className="header__title">
-							<span className="header__title-sub">The</span>{" "}
-							<span className="header__title-main">Publisher</span>
-						</Link>
-						<p className="header__sub-title">Astana, Kazakhstan * Vol.I</p>
-					</div>
+					<Logo />
 					<Link href={user ? "/profile" : "/auth/sign-in"} className="header__profile">
-						<p className="header__profile-name">
-							{user?.lastName} {user?.firstName}
-						</p>
+						<p className="header__profile-name">{user?.username}</p>
 						<Image
 							src={user?.profilePictureURL ?? "/assets/icons/user.svg"}
 							alt="user"

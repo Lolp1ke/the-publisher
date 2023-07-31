@@ -1,0 +1,31 @@
+@import "@assets/styles/mixins";
+
+.logo {
+	position: relative;
+	@include flex(column, normal, center, 10px);
+
+	&__title {
+		@include flex(row, normal, flex-end, 5px);
+		color: var(--secondary-color);
+		font-family: "Simonetta", serif;
+		text-transform: uppercase;
+		white-space: pre-wrap;
+
+		&-sub {
+			font-size: clamp(1rem, 0.472rem + 2.25vw, 2.5rem); // 16 <- 40
+			margin-bottom: 9px;
+			font-weight: 600;
+			letter-spacing: -2.5px;
+		}
+		&-main {
+			font-size: clamp(1.5rem, 0.62rem + 3.76vw, 4rem); // 24 <- 64
+			border-bottom: 3px var(--secondary-color) solid;
+			line-height: 0.8;
+			font-weight: 900;
+			letter-spacing: -2.5px;
+		}
+	}
+
+	&__sub-title {
+	}
+}
