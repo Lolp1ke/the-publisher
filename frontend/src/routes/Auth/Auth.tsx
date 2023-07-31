@@ -1,4 +1,5 @@
 "use client";
+import { useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -8,7 +9,6 @@ import Logo from "@ui/Logo/Logo";
 import Input from "@ui/Input/Input";
 
 import "./styles/auth.scss";
-import { useRef } from "react";
 
 interface AuthProps {
 	isLogin: boolean;
@@ -16,6 +16,8 @@ interface AuthProps {
 
 export default function Auth({ isLogin }: AuthProps) {
 	const { localSignUp, localSignIn } = useAuth();
+
+	const [isProceed, setIsProceed] = useState<boolean>(false);
 
 	const usernameRef = useRef<HTMLInputElement>(null);
 	const emailRef = useRef<HTMLInputElement>(null);
@@ -80,20 +82,27 @@ export default function Auth({ isLogin }: AuthProps) {
 					Forgot your password?
 				</button>
 				<button className="auth__submit" type={"submit"}>
-					{isLogin ? "Log in" : "Sign up"}
+					{isLogin ? "Log in" : isProceed ? "Sign up" : "Proceed"}
 				</button>
-				<p className="auth__other">or</p>
-				<p className="auth__other-auth">Log in with</p>
-				<div className="auth__methods">
-					<button className="auth__method" type={"button"}>
-						<Image
-							src={"/assets/icons/auth/google.svg"}
-							alt={"google"}
-							width={48}
-							height={48}
-							draggable={false}
-						/>
-					</button>
+				<div
+					className="auth__other"
+					style={{
+						display: isLogin ? "flex" : "none",
+					}}
+				>
+					<p className="auth__other-text">or</p>
+					<p className="auth__other-auth">Log in with</p>
+					<div className="auth__methods">
+						<button className="auth__method" type={"button"}>
+							<Image
+								src={"/assets/icons/auth/google.svg"}
+								alt={"google"}
+								width={48}
+								height={48}
+								draggable={false}
+							/>
+						</button>
+					</div>
 				</div>
 			</form>
 		</div>

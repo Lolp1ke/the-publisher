@@ -12,12 +12,14 @@
 		white-space: pre-wrap;
 
 		&-sub {
+			font-family: "Simonetta", serif;
 			font-size: clamp(1rem, 0.472rem + 2.25vw, 2.5rem); // 16 <- 40
 			margin-bottom: 9px;
 			font-weight: 600;
 			letter-spacing: -2.5px;
 		}
 		&-main {
+			font-family: "Simonetta", serif;
 			font-size: clamp(1.5rem, 0.62rem + 3.76vw, 4rem); // 24 <- 64
 			border-bottom: 3px var(--secondary-color) solid;
 			line-height: 0.8;
