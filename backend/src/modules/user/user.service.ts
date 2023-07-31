@@ -57,7 +57,11 @@ export class UserService {
 	public async validate(dto: ValidateUserDto) {
 		dto.username = this.stringHelper.normalizer(dto.username);
 
-		const user = await this.get({ username: dto.username });
+		const user = await this.prismaService.user.findUnique({
+			where: {
+				username: dto.username,
+			},
+		});
 
 		const comparedPassword = this.stringHelper.compare(dto.password, user.password);
 		if (!comparedPassword) throw new UnauthorizedException();
@@ -76,6 +80,7 @@ export class UserService {
 				},
 			})
 			.then((user) => {
+				delete user.password;
 				return user;
 			})
 			.catch(() => {
@@ -90,6 +95,9 @@ export class UserService {
 		return await this.prismaService.user
 			.findMany(dto)
 			.then((users) => {
+				for (const user of users) {
+					delete user.password;
+				}
 				return users;
 			})
 			.catch((error) => {

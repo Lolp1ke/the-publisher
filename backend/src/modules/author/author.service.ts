@@ -33,4 +33,19 @@ export class AuthorService {
 				throw new InternalServerErrorException(error);
 			});
 	}
+
+	public async checkUser(userId: string) {
+		return await this.prismaService.author
+			.findUnique({
+				where: {
+					userId,
+				},
+			})
+			.then((author) => {
+				return author;
+			})
+			.catch((error) => {
+				throw new InternalServerErrorException(error);
+			});
+	}
 }
