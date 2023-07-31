@@ -1,7 +1,7 @@
 import Link from "next/link";
+import Image from "next/image";
 
 import "./styles/navbar.scss";
-import Image from "next/image";
 
 export default function Navbar() {
 	return (
@@ -10,7 +10,7 @@ export default function Navbar() {
 				<Link href={"/"} className="navbar__link">
 					Home
 				</Link>
-				<Link href={"/about"} className="navbar__link">
+				<Link href={"/"} className="navbar__link">
 					About us
 				</Link>
 				<Link href={""} className="navbar__link">
@@ -26,9 +26,12 @@ export default function Navbar() {
 					Sport
 				</Link>
 			</div>
-			<button className="navbar__search" type={"button"}>
-				<Image src="/assets/icons/search.svg" alt="search" fill={true} />
-			</button>
+			<div className="navbar__search">
+				{/*<input type="text" className="navbar__search-field" />*/}
+				<button className="navbar__search-button" type={"button"}>
+					<Image src="/assets/icons/search.svg" alt="search" width={24} height={24} draggable={false} />
+				</button>
+			</div>
 		</nav>
 	);
 }

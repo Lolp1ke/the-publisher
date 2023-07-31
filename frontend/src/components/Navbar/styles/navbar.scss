@@ -26,9 +26,19 @@
 
 	// .navbar__search
 	&__search {
-		@include flex(row, center, center, 0);
+		@include flex(row, normal, center, 10px);
 		position: absolute;
 		right: 0;
+	}
+	&__search-button {
+		@include flex(row, center, center, 0);
+	}
+	&__search-field {
+		background-color: #a4a4a4;
+		height: 100%;
+		padding: 5px 20px;
+		border-radius: 20px;
+		color: #ffffff;
 	}
 
 	// .navbar__icon
