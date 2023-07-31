@@ -1,18 +1,15 @@
-import { Dispatch, SetStateAction } from "react";
+"use client";
+import { useState } from "react";
 
 import "./styles/burger.scss";
 
-interface BurgerProps {
-	isVisible: boolean;
-	setIsVisible: Dispatch<SetStateAction<boolean>>;
-}
-
-export default function Burger({ isVisible, setIsVisible }: BurgerProps) {
+export default function Burger() {
+	const [showBurger, setShowBurger] = useState<boolean>(false);
 	return (
 		<button
-			className={"burger" + " " + (isVisible ? "active" : "")}
+			className={"burger" + " " + (showBurger ? "active" : "")}
 			onClick={() => {
-				setIsVisible((prevState) => !prevState);
+				setShowBurger((prevState) => !prevState);
 			}}
 			type={"button"}
 			title={"menu"}
