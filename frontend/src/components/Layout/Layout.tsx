@@ -10,9 +10,7 @@ interface LayoutProps {
 }
 
 export default async function Layout({ className, children }: LayoutProps) {
-	const user = await useUser().then((props) => {
-		return props.user;
-	});
+	const { user } = await useUser();
 
 	return (
 		<Fragment>

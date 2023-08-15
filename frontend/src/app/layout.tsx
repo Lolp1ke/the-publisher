@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 	title: "The publisher",
 };
 
-export const runtime: ServerRuntime = "edge";
+// export const runtime: ServerRuntime = "edge";
 
 export default function RootLayout({ children }: { children: ReactNode }) {
 	return (

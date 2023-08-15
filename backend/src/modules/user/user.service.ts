@@ -16,7 +16,7 @@ import { ObjectHelper } from "@helpers/object/object.helper";
 
 import { CreateUserDto, GetUserDto, SetProfilePictureDto, ValidateUserDto } from "@modules/user/dto";
 import { GetSessionDto } from "@modules/session/dto";
-import { FilterDto } from "@root/types";
+import { FilterDto } from "dto";
 
 @Injectable()
 export class UserService {

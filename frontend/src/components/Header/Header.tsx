@@ -6,9 +6,9 @@ import "./styles/header.scss";
 import Navbar from "@components/Navbar/Navbar";
 
 import Burger from "@ui/Burger/Burger";
+import Logo from "@ui/Logo/Logo";
 
 import { TUser } from "@hooks/user/types";
-import Logo from "@ui/Logo/Logo";
 
 interface HeaderProps {
 	user: TUser | null;

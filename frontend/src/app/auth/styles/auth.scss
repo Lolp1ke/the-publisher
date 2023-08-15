@@ -30,7 +30,7 @@
 
 	// .auth__form
 	&__form {
-		@include flex(column, normal, normal, 0);
+		@include flex(column, normal, normal, 20px);
 		min-width: clamp(22.5rem, 20.555rem + 8.41vw, 28.125rem); // 450 -> 360
 		padding: 35px;
 		border-radius: 6px;
@@ -123,6 +123,36 @@
 		border-radius: 50%;
 		padding: 2px;
 		border: 2px solid #41644a;
+	}
+
+	&__back {
+		align-self: flex-end;
+	}
+
+	&__select {
+		max-height: 200px;
+		max-width: 400px;
+		min-height: 55px;
+		overflow-y: auto;
+		overflow-x: hidden;
+		border-radius: 2px;
+		border: 1px solid #41644a;
+
+		&-option {
+			@include flex(row, space-between, center, 10px);
+			padding: 15px;
+			cursor: pointer;
+			& p {
+				cursor: pointer;
+			}
+			& img {
+				object-fit: cover;
+			}
+
+			&.active {
+				background-color: rgba(184, 213, 177, 0.5);
+			}
+		}
 	}
 }
 

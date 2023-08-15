@@ -24,7 +24,9 @@ export async function useUser(): Promise<useUserProps> {
 			.then((response: AxiosResponse<TUser>) => {
 				return response.data;
 			})
-			.catch(() => {
+			.catch((error) => {
+				console.log(error);
+
 				return null;
 			});
 	}

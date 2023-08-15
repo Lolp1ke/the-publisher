@@ -5,7 +5,7 @@ import { UserService } from "@modules/user/user.service";
 
 import { GetUserDto, SetProfilePictureDto } from "@modules/user/dto";
 import { GetSessionDto } from "@modules/session/dto";
-import { FilterDto } from "@root/types";
+import { FilterDto } from "dto";
 
 @Controller("/user")
 export class UserController {

@@ -10,9 +10,12 @@
 	&__field {
 		width: 100%;
 		padding: 15px;
-		color: #b8d5b1;
 		font-size: 16px;
 		line-height: 136%; /* 19.04px */
+
+		&::placeholder {
+			color: #b8d5b1;
+		}
 	}
 	&__field-icon {
 		@include flex(row, center, center, 0);

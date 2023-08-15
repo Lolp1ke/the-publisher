@@ -1,5 +1,5 @@
-import Home from "@routes/Home/Home";
+import Layout from "@components/Layout/Layout";
 
 export default function page() {
-	return <Home />;
+	return <Layout className={"home"}>{}</Layout>;
 }
