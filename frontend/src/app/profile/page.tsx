@@ -10,7 +10,6 @@ import "./_styles/profile.scss";
 
 export default async function page() {
 	const { user } = await useUser();
-	console.log(user);
 
 	return (
 		<section className="profile">
