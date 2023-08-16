@@ -3,9 +3,12 @@ import Image from "next/image";
 
 import "./styles/navbar.scss";
 
+import Burger from "@ui/Burger/Burger";
+
 export default function Navbar() {
 	return (
 		<nav className="navbar">
+			<Burger />
 			<div className="navbar__list">
 				<Link href={"/"} className="navbar__link">
 					Home
@@ -13,16 +16,16 @@ export default function Navbar() {
 				<Link href={"/"} className="navbar__link">
 					About us
 				</Link>
-				<Link href={""} className="navbar__link">
+				<Link href={"/"} className="navbar__link">
 					Opinion
 				</Link>
-				<Link href={""} className="navbar__link">
+				<Link href={"/"} className="navbar__link">
 					Education
 				</Link>
-				<Link href={""} className="navbar__link">
+				<Link href={"/"} className="navbar__link">
 					Inteenrest
 				</Link>
-				<Link href={""} className="navbar__link">
+				<Link href={"/"} className="navbar__link">
 					Sport
 				</Link>
 			</div>

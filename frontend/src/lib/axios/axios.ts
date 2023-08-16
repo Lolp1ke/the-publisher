@@ -1,6 +1,11 @@
 import axios from "axios";
+import type { AxiosRequestConfig } from "axios";
+
 import { MainConfig } from "@config/main";
 
-export const Axios = axios.create({
-	baseURL: MainConfig.BACKEND_HOST,
-});
+export function Axios(params: AxiosRequestConfig) {
+	return axios({
+		baseURL: MainConfig.BACKEND_HOST,
+		...params,
+	});
+}

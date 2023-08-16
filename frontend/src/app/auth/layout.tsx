@@ -1,7 +1,7 @@
 import { AuthProvider } from "@context/auth/useAuth";
 import type { ReactNode } from "react";
 
-import "./styles/auth.scss";
+import "@root/app/auth/_styles/auth.scss";
 import { useUser } from "@hooks/user/useUser";
 import { redirect } from "next/navigation";
 

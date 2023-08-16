@@ -1,14 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
 
-import "./styles/header.scss";
-
 import Navbar from "@components/Navbar/Navbar";
 
-import Burger from "@ui/Burger/Burger";
 import Logo from "@ui/Logo/Logo";
 
-import { TUser } from "@hooks/user/types";
+import type { TUser } from "@hooks/user/types";
+
+import "./styles/header.scss";
 
 interface HeaderProps {
 	user: TUser | null;
@@ -20,7 +19,6 @@ export default function Header({ user }: HeaderProps) {
 			<div className="header__container">
 				<div className="header__main">
 					<div className="header__info">
-						<Burger />
 						<p className="header__date">
 							<time>
 								{new Date().toLocaleString("en-EN", {

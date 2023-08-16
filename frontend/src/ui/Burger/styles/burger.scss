@@ -31,6 +31,7 @@
 
 	&.active {
 		span {
+			background-color: #000000;
 			transform: rotate(135deg);
 			&:first-child {
 				transform: rotate(135deg);

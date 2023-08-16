@@ -1,0 +1,129 @@
+@import "@assets/styles/mixins";
+
+.profile {
+	position: relative;
+
+	//& .navbar .navbar__search {
+	//	margin-right: 50px;
+	//}
+
+	// .profile__container
+	&__container {
+		margin-top: 60px !important;
+		@include flex(row, normal, normal, 0);
+
+		@media (max-width: 600px) {
+			width: 85%;
+		}
+	}
+
+	// .profile__user
+	&__user {
+		@include flex(row, flex-start, flex-start, 20px);
+		width: 100%;
+
+		@media (max-width: 1250px) {
+			flex-direction: column;
+			align-items: center;
+		}
+	}
+
+	// .profile__user-image
+	&__user-image {
+		overflow: hidden;
+		border-radius: 50%;
+		//padding: 5px;
+		//border: 1px var(--main-color) solid;
+		min-height: 200px;
+		min-width: 200px;
+	}
+
+	// .profile__user-info
+	&__user-info {
+		position: relative;
+		@include flex(column, normal, flex-start, 5px);
+		min-width: clamp(18.75rem, 12.148rem + 28.17vw, 37.5rem); // 600 -> 300
+		overflow: hidden;
+	}
+
+	// .profile__user-name
+	&__user-name {
+		font-size: 24px;
+		font-weight: 700;
+		line-height: 136%; /* 32.64px */
+		letter-spacing: -0.48px;
+	}
+
+	// .profile__user-tag
+	&__user-tag {
+		color: var(--main-color);
+		font-size: 16px;
+		line-height: 136%; /* 21.76px */
+
+		&::before {
+			content: "@";
+		}
+	}
+
+	// .profile__user-about
+	&__user-about {
+		font-size: 16px;
+		line-height: 136%; /* 21.76px */
+		max-width: 500px;
+	}
+
+	// .profile__user-type
+	&__user-type {
+		color: var(--main-color);
+		font-size: 16px;
+		font-style: italic;
+		line-height: 136%; /* 21.76px */
+	}
+
+	// .profile__about
+	&__about {
+		margin-left: auto;
+		min-width: 300px;
+
+		@include flex(column, normal, flex-start, 8px);
+
+		@media (max-width: 1250px) {
+			margin: unset;
+		}
+	}
+
+	// .profile__about-title
+	&__about-title {
+		position: relative;
+		width: 100%;
+		font-size: 24px;
+		font-weight: 700;
+		line-height: 136%; /* 32.64px */
+		letter-spacing: -0.48px;
+		padding-bottom: 10px;
+
+		&::after {
+			content: "";
+			position: absolute;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			border-bottom: 1.5px var(--main-color) solid;
+		}
+	}
+
+	// .profile__about-list
+	&__about-list {
+		margin-top: 8px;
+		@include flex(column, normal, flex-start, 15px);
+	}
+
+	// .profile__about-item
+	&__about-item {
+		@include flex(row, normal, center, 10px);
+	}
+
+	// .profile__about-text
+	&__about-text {
+	}
+}

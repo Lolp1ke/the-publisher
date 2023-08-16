@@ -5,6 +5,7 @@ import "./styles/burger.scss";
 
 export default function Burger() {
 	const [showBurger, setShowBurger] = useState<boolean>(false);
+
 	return (
 		<button
 			className={"burger" + " " + (showBurger ? "active" : "")}

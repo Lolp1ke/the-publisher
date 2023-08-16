@@ -6,6 +6,7 @@
 	// .header__container
 	&__container {
 		@include flex(column, normal, center, 10px);
+		width: 100% !important;
 	}
 
 	// .header__main
@@ -24,6 +25,10 @@
 	// .header__date
 	&__date {
 		max-width: 120px;
+
+		& time {
+			@include flex(row, center, center, 0);
+		}
 	}
 
 	// .header__social
@@ -31,8 +36,9 @@
 		@include flex(row, space-evenly, center, 5px);
 		width: 100%;
 	}
-	&__date,
-	&__social {
+
+	&__social,
+	&__date {
 		@media (max-width: 700px) {
 			display: none;
 		}
