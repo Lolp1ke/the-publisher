@@ -1,9 +1,9 @@
 import { cookies } from "next/headers";
-import type { AxiosResponse } from "axios";
+import { type AxiosResponse } from "axios";
 
 import { Axios } from "@lib/axios/axios";
 
-import type { TUser } from "@hooks/user/types";
+import { type TUser } from "@hooks/user/types";
 
 interface useUserProps {
 	user: TUser | null;

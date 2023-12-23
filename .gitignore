@@ -1,8 +1,7 @@
 node_modules
-backend/key.json
+package-lock.json
 
 .editorconfig
-.env
 
 # compiled output
 backend/dist
